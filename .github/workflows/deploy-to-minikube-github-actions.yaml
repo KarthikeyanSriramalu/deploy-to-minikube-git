@@ -40,4 +40,4 @@ jobs:
           kubectl get pods -A
           minikube service list
           minikube service nodejs-app --url
-          curl $(minikube service hello-node --url)
+          curl $(minikube service nodejs-app --url)
