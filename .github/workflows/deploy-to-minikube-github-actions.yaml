@@ -43,6 +43,8 @@ jobs:
       run: |
           kubectl get svc
           kubectl get pods -A
+          kubectl create -f ingress.yaml
+          kubectl get ingress
           minikube service list
           minikube service nodejs-app --url
           curl $(minikube service nodejs-app --url)
