@@ -45,4 +45,4 @@ jobs:
           minikube service list
           # minikube service nodejs-app --url
           #echo $(minikube service nodejs-app --url)
-          curl http://localhost:8080
+          curl localhost:8080
