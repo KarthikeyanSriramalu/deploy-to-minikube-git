@@ -24,16 +24,12 @@ jobs:
         docker pull devopshint/node-app:latest
      #   docker pull registry.k8s.io/e2e-test-images/agnhost:2.39
      #   kubectl create deployment hello-minikube1 --image=kicbase/echo-server:1.0
-    - name: Sleep for 180 seconds
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '180s'
     # - name: Minikube tunnel
     #  run: | 
     #    minikube tunnel
     - name: Deploy to minikube
       run: |  
-        sudo minikube addons enable ingress
+        minikube addons enable ingress
         kubectl apply -f k8s-node-app.yaml
         # kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080
     - name: Sleep for 300 seconds
