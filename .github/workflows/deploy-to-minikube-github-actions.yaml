@@ -43,6 +43,6 @@ jobs:
           kubectl apply -f ingress.yaml
           kubectl get ingress
           minikube service list
-          minikube service nodejs-app --url
-          echo $(minikube service nodejs-app --url)
-          curl $(minikube service nodejs-app --url)
+          # minikube service nodejs-app --url
+          #echo $(minikube service nodejs-app --url)
+          curl http://localhost:8080
