@@ -2,10 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-nodejs-app-a  
+  annotations:
+    ngix.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nodejs-app-a
   rules:
-  - host: localhost
+  - host: mykube.test.com
     http:
       paths:
       - path: /
