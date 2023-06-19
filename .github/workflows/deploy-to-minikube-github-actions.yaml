@@ -19,12 +19,24 @@ jobs:
           docker build -f ./Dockerfile -t devopshint/node-app:latest .
           echo -n "verifying images:"
           docker images         
-    - name: Deploy to minikube
+    - name: pull image
       run: |
         docker pull devopshint/node-app:latest
+        docker pull registry.k8s.io/e2e-test-images/agnhost:2.39
+    - name: Sleep for 180 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '180s'
+    - name: Deploy to minikube
+        kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080
         kubectl apply -f k8s-node-app.yaml
+    - name: Sleep for 300 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '300s'
     - name: Test service URLs
       run: |
+          kubectl get pods -A
           minikube service list
           minikube service nodejs-app --url
-          curl $(minikube service nodejs-app --url)
+          curl $(minikube service hello-node --url)
