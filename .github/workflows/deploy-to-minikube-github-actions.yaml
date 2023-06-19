@@ -21,7 +21,7 @@ jobs:
           docker images         
     - name: Deploy to minikube
       run:
-        docker pull devopshint/node-app:latest
+        docker image pull devopshint/node-app:latest
         kubectl apply -f k8s-node-app.yaml
     - name: Test service URLs
       run: |
