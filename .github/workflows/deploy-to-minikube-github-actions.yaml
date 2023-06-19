@@ -25,5 +25,8 @@ jobs:
     - name: Test service URLs
       run: |
           kubectl get pods
+          kubectl describe pod nodejs-app
+          minikube logs
+          kubectl get events --all-namespaces  --sort-by='.metadata.creationTimestamp'
           minikube service list
           minikube service nodejs-app --url
