@@ -23,6 +23,7 @@ jobs:
       run: |
         docker pull devopshint/node-app:latest
         docker pull registry.k8s.io/e2e-test-images/agnhost:2.39
+        kubectl create deployment hello-minikube1 --image=kicbase/echo-server:1.0
     - name: Sleep for 180 seconds
       uses: jakejarvis/wait-action@master
       with:
@@ -37,6 +38,8 @@ jobs:
         time: '300s'
     - name: Test service URLs
       run: |
+          kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
+          kubectl get svc
           kubectl get pods -A
           minikube service list
           minikube service nodejs-app --url
