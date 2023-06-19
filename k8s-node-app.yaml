@@ -28,5 +28,5 @@ spec:
   selector:
     app: nodejs-app
   ports:
-  - name: TCP
+  - name: tcp
     port: 80
