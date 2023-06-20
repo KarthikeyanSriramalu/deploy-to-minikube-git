@@ -50,6 +50,14 @@ jobs:
       run: |
           kubectl get ingress -n default
           minikube service list
-          minikube service nodejs-app --url
-          echo $(minikube service nodejs-app --url)
-          curl $(minikube service nodejs-app --url)
+    - name: Sleep for 300 seconds...
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '300s'
+    - name: Test Ingress ip2
+      run: |
+          kubectl get ingress -n default
+          minikube service list
+          # minikube service nodejs-app --url
+          # echo $(minikube service nodejs-app --url)
+          # curl $(minikube service nodejs-app --url)
