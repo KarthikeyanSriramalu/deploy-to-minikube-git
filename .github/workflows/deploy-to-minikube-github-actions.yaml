@@ -29,9 +29,9 @@ jobs:
     #    minikube tunnel
     - name: Deploy to minikube
       run: |
-        minikube addons enable ingress
+        # minikube addons enable ingress
         kubectl apply -f k8s-node-app.yaml
-        kubectl apply -f services.yaml
+        # kubectl apply -f services.yaml
         # kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080
     - name: Sleep for 300 seconds
       uses: jakejarvis/wait-action@master
@@ -41,14 +41,14 @@ jobs:
       run: |
           kubectl get svc
           kubectl get pods -A
-          kubectl apply -f ingress.yaml
+          # kubectl apply -f ingress.yaml
     - name: Sleep for 300 seconds
       uses: jakejarvis/wait-action@master
       with:
         time: '300s'
     - name: Test Ingress ip
       run: |
-          kubectl get ingress -n default
+          # kubectl get ingress -n default
           minikube service list
     - name: Sleep for 300 seconds...
       uses: jakejarvis/wait-action@master
@@ -56,8 +56,8 @@ jobs:
         time: '300s'
     - name: Test Ingress ip2
       run: |
-          kubectl get ingress -n default
+          # kubectl get ingress -n default
           minikube service list
-          # minikube service nodejs-app --url
-          # echo $(minikube service nodejs-app --url)
-          # curl $(minikube service nodejs-app --url)
+          minikube service nodejs-app --url
+          echo $(minikube service nodejs-app --url)
+          curl $(minikube service nodejs-app --url)
