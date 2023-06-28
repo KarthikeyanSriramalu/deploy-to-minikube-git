@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
+        imagePullPolicy: Never
         image: "devopshint/node-app:latest"
         ports:
           - containerPort: 3000
@@ -30,7 +31,7 @@ metadata:
 spec:
   selector:
     app: nodejs-app
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: http
     targetPort: 3000
